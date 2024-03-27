@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:regis_db/form/widget/form_footer.dart';
+import 'package:regis_db/form/widget/form_head.dart';
+import 'package:regis_db/form/widget/form_ui.dart';
+
+class FormScreen extends StatefulWidget {
+  FormScreen({super.key});
+
+  @override
+  State<FormScreen> createState() => _FormScreenState();
+}
+
+class _FormScreenState extends State<FormScreen> {
+  var nama = TextEditingController();
+  var no = TextEditingController();
+  var email = TextEditingController();
+  var alamat = TextEditingController();
+  var formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          FormHead(),
+          FormUI(
+              formKey: formKey,
+              etNama: nama,
+              etEmail: email,
+              etAlamat: alamat,
+              etNo: no),
+          FormFooter(
+            onPressedImage: () {},
+            onPressedSave: () {},
+          )
+        ],
+      ),
+    );
+  }
+}
