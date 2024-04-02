@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:html';
 
+import 'package:flutter/material.dart';
+
+import 'package:regis_db/kontak/model/kontak.dart';
 import 'package:regis_db/kontak/service/kontak_service.dart';
 
 class KontakController {
@@ -12,7 +14,7 @@ class KontakController {
       'nama': person.nama,
       'email': person.email,
       'alamat': person.alamat,
-      'no_telepon': person.noTelepon
+      'no_telepon': person.noTelepon,
     };
     try {
       var response = await kontakService.addPerson(data, file);
