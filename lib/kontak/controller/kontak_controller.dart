@@ -12,7 +12,7 @@ class KontakController {
       'nama': person.nama,
       'email': person.email,
       'alamat': person.alamat,
-      'no_telepon': person.noTelepon,
+      'no_telepon': person.noTelepon
     };
     try {
       var response = await kontakService.addPerson(data, file);
@@ -34,6 +34,7 @@ class KontakController {
         'message': 'Terjadi Kesalahan: $e',
       };
     }
+    return await addPerson(person, file);
   }
 
   Future<List<Kontak>> getPeople() async {
