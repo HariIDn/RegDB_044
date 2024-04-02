@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:regis_db/form/widget/form_footer.dart';
 import 'package:regis_db/form/widget/form_head.dart';
 import 'package:regis_db/form/widget/form_ui.dart';
 
@@ -22,16 +21,7 @@ class _FormScreenState extends State<FormScreen> {
       body: Column(
         children: [
           FormHead(),
-          FormUI(
-              formKey: formKey,
-              etNama: nama,
-              etEmail: email,
-              etAlamat: alamat,
-              etNo: no),
-          FormFooter(
-            onPressedImage: () {},
-            onPressedSave: () {},
-          )
+          FormUI(),
         ],
       ),
     );
