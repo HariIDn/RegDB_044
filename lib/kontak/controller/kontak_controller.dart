@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:regis_db/kontak/model/kontak.dart';
 import 'package:regis_db/kontak/service/kontak_service.dart';
 
@@ -20,7 +18,7 @@ class KontakController {
       var response = await kontakService.addPerson(data, file);
 
       if (response.statusCode == 201) {
-        return {'succes': true, 'message': 'Data berhasil disimpan,'};
+        return {'success': true, 'message': 'Data berhasil disimpan,'};
       } else {
         if (response.headers['content-type']!.contains('application/json')) {
           var decodeJson = jsonDecode(response.body);
@@ -35,6 +33,18 @@ class KontakController {
         'success': false,
         'message': 'Terjadi Kesalahan: $e',
       };
+    }
+  }
+
+  Future<List<Kontak>> getPeople() async {
+    try {
+      List<dynamic> peopleData = await kontakService.fetchPeople();
+      List<Kontak> people =
+          peopleData.map((json) => Kontak.fromMap(json)).toList();
+      return people;
+    } catch (e) {
+      print(e);
+      throw Exception("Gagal mengambil data");
     }
   }
 }
