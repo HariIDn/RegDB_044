@@ -5,29 +5,29 @@ class Kontak {
   final String nama;
   final String email;
   final String alamat;
-  final String tlp;
   final String noTelepon;
+  final String foto;
   Kontak({
     required this.nama,
     required this.email,
     required this.alamat,
-    required this.tlp,
     required this.noTelepon,
+    required this.foto,
   });
 
   Kontak copyWith({
     String? nama,
     String? email,
     String? alamat,
-    String? tlp,
     String? noTelepon,
+    String? foto,
   }) {
     return Kontak(
       nama: nama ?? this.nama,
       email: email ?? this.email,
       alamat: alamat ?? this.alamat,
-      tlp: tlp ?? this.tlp,
       noTelepon: noTelepon ?? this.noTelepon,
+      foto: foto ?? this.foto,
     );
   }
 
@@ -36,8 +36,8 @@ class Kontak {
       'nama': nama,
       'email': email,
       'alamat': alamat,
-      'tlp': tlp,
       'noTelepon': noTelepon,
+      'foto': foto,
     };
   }
 
@@ -46,8 +46,8 @@ class Kontak {
       nama: map['nama'] as String,
       email: map['email'] as String,
       alamat: map['alamat'] as String,
-      tlp: map['tlp'] as String,
       noTelepon: map['noTelepon'] as String,
+      foto: map['foto'] as String,
     );
   }
 
@@ -58,7 +58,7 @@ class Kontak {
 
   @override
   String toString() {
-    return 'Kontak(nama: $nama, email: $email, alamat: $alamat, tlp: $tlp, noTelepon: $noTelepon)';
+    return 'Kontak(nama: $nama, email: $email, alamat: $alamat, noTelepon: $noTelepon, foto: $foto)';
   }
 
   @override
@@ -68,8 +68,8 @@ class Kontak {
     return other.nama == nama &&
         other.email == email &&
         other.alamat == alamat &&
-        other.tlp == tlp &&
-        other.noTelepon == noTelepon;
+        other.noTelepon == noTelepon &&
+        other.foto == foto;
   }
 
   @override
@@ -77,7 +77,7 @@ class Kontak {
     return nama.hashCode ^
         email.hashCode ^
         alamat.hashCode ^
-        tlp.hashCode ^
-        noTelepon.hashCode;
+        noTelepon.hashCode ^
+        foto.hashCode;
   }
 }

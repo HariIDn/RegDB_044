@@ -3,7 +3,7 @@ import 'package:regis_db/form/widget/form_head.dart';
 import 'package:regis_db/form/widget/form_ui.dart';
 
 class FormScreen extends StatefulWidget {
-  FormScreen({super.key});
+  const FormScreen({super.key});
 
   @override
   State<FormScreen> createState() => _FormScreenState();
@@ -25,5 +25,6 @@ class _FormScreenState extends State<FormScreen> {
         ],
       ),
     );
+    ;
   }
 }
