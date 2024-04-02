@@ -1,29 +1,42 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:regis_db/kontak/controller/kontak_controller.dart';
+import 'package:regis_db/kontak/model/kontak.dart';
 
 class FormUI extends StatefulWidget {
-  const FormUI(
-      {super.key,
-      required this.formKey,
-      required this.etNama,
-      required this.etEmail,
-      required this.etAlamat,
-      required this.etNo});
-
-  final GlobalKey<FormState> formKey;
-  final TextEditingController etNama;
-  final TextEditingController etEmail;
-  final TextEditingController etAlamat;
-  final TextEditingController etNo;
+  const FormUI({super.key, o});
 
   @override
   State<FormUI> createState() => _FormUIState();
 }
 
 class _FormUIState extends State<FormUI> {
+  final _formKey = GlobalKey<FormState>();
+  final etNama = TextEditingController();
+  final etEmail = TextEditingController();
+  final etAlamat = TextEditingController();
+  final etNo = TextEditingController();
+
+  File? _image;
+  final _imagePicker = ImagePicker();
+  Future<void> getImage() async {
+    final XFile? pickedFile =
+        await _imagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('You did not select an image.');
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: widget.formKey,
+      key: _formKey,
       child: Column(
         children: [
           Container(
@@ -33,7 +46,7 @@ class _FormUIState extends State<FormUI> {
                 labelText: 'Nama',
                 hintText: 'Masukan Nama',
               ),
-              controller: widget.etNama,
+              controller: etNama,
             ),
           ),
           Container(
@@ -43,7 +56,7 @@ class _FormUIState extends State<FormUI> {
                 labelText: 'Email',
                 hintText: 'Masukan Email',
               ),
-              controller: widget.etEmail,
+              controller: etEmail,
             ),
           ),
           Container(
@@ -53,7 +66,7 @@ class _FormUIState extends State<FormUI> {
                   labelText: 'Alamat',
                   hintText: 'Masukan Alamat',
                 ),
-                controller: widget.etAlamat),
+                controller: etAlamat),
           ),
           Container(
             margin: EdgeInsets.all(8),
@@ -62,8 +75,28 @@ class _FormUIState extends State<FormUI> {
                   labelText: 'Telepon',
                   hintText: 'Masukan Nomor Telepon',
                 ),
-                controller: widget.etNo),
+                controller: etNo),
           ),
+          Container(
+              child: ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      var result = await KontakController().addPerson(
+                        Kontak(
+                          nama: etNama.text,
+                          email: etEmail.text,
+                          alamat: etAlamat.text,
+                          noTelepon: etNo.text,
+                          foto: _image!.path,
+                        ),
+                        _image,
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(result['message'])),
+                      );
+                    }
+                  },
+                  child: Text('Simpan')))
         ],
       ),
     );
