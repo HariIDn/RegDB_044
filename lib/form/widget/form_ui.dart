@@ -77,31 +77,36 @@ class _FormUIState extends State<FormUI> {
                 ),
                 controller: etNo),
           ),
+          SizedBox(height: 10),
           _image == null
               ? const Text('Tidak ada gambar yang dipilih')
               : Image.file(_image!),
+          SizedBox(height: 10),
           ElevatedButton(
               onPressed: getImage, child: const Text('Pilih Gambar')),
+          SizedBox(height: 10),
           Container(
-              child: ElevatedButton(
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      var result = await KontakController().addPerson(
-                        Kontak(
-                          nama: etNama.text,
-                          email: etEmail.text,
-                          alamat: etAlamat.text,
-                          noTelepon: etNo.text,
-                          foto: _image!.path,
-                        ),
-                        _image,
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(result['message'])),
-                      );
-                    }
-                  },
-                  child: Text('Simpan')))
+            child: ElevatedButton(
+              onPressed: () async {
+                if (_formKey.currentState!.validate()) {
+                  var result = await KontakController().addPerson(
+                    Kontak(
+                      nama: etNama.text,
+                      email: etEmail.text,
+                      alamat: etAlamat.text,
+                      noTelepon: etNo.text,
+                      foto: _image!.path,
+                    ),
+                    _image,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(result['message'])),
+                  );
+                }
+              },
+              child: Text('Submit'),
+            ),
+          ),
         ],
       ),
     );

@@ -18,11 +18,13 @@ class _FormScreenState extends State<FormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          FormHead(),
-          FormUI(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            FormHead(),
+            FormUI(),
+          ],
+        ),
       ),
     );
   }
