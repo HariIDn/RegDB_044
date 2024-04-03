@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:regis_db/form/screen/form_screen.dart';
+import 'package:regis_db/home/view/homeview.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FormScreen(),
+      home: HomeView(),
     );
   }
 }

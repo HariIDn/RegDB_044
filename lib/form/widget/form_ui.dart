@@ -77,6 +77,11 @@ class _FormUIState extends State<FormUI> {
                 ),
                 controller: etNo),
           ),
+          _image == null
+              ? const Text('Tidak ada gambar yang dipilih')
+              : Image.file(_image!),
+          ElevatedButton(
+              onPressed: getImage, child: const Text('Pilih Gambar')),
           Container(
               child: ElevatedButton(
                   onPressed: () async {
