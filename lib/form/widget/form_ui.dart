@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:regis_db/home/view/homeview.dart';
 import 'package:regis_db/kontak/controller/kontak_controller.dart';
 import 'package:regis_db/kontak/model/kontak.dart';
 
@@ -102,6 +103,10 @@ class _FormUIState extends State<FormUI> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(result['message'])),
                   );
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeView()),
+                      (route) => false);
                 }
               },
               child: Text('Submit'),
