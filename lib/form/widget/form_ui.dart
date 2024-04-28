@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:regis_db/home/view/homeview.dart';
 import 'package:regis_db/kontak/controller/kontak_controller.dart';
 import 'package:regis_db/kontak/model/kontak.dart';
+import 'package:regis_db/maps/screen/map_screen.dart';
 
 class FormUI extends StatefulWidget {
   const FormUI({super.key, o});
@@ -22,6 +23,7 @@ class _FormUIState extends State<FormUI> {
 
   File? _image;
   final _imagePicker = ImagePicker();
+  String? _alamat;
   Future<void> getImage() async {
     final XFile? pickedFile =
         await _imagePicker.pickImage(source: ImageSource.gallery);
@@ -61,13 +63,52 @@ class _FormUIState extends State<FormUI> {
             ),
           ),
           Container(
+            width: double.infinity,
             margin: EdgeInsets.all(8),
-            child: TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Alamat',
-                  hintText: 'Masukan Alamat',
-                ),
-                controller: etAlamat),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Alamat"),
+                _alamat == null
+                    ? SizedBox(
+                        width: double.infinity,
+                        child: Text('Alamat Kosong'),
+                      )
+                    : Text('$_alamat'),
+                _alamat == null
+                    ? TextButton(
+                        onPressed: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MapScreen(
+                                  onLocationSelected: (selectedAddress) {
+                                setState(() {
+                                  _alamat = selectedAddress;
+                                });
+                              }),
+                            ),
+                          );
+                        },
+                        child: Text('Pilih Alamat'))
+                    : TextButton(
+                        onPressed: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MapScreen(
+                                  onLocationSelected: (selectedAddress) {
+                                setState(() {
+                                  _alamat = selectedAddress;
+                                });
+                              }),
+                            ),
+                          );
+                        },
+                        child: Text('Ubah Alamat'),
+                      ),
+              ],
+            ),
           ),
           Container(
             margin: EdgeInsets.all(8),
