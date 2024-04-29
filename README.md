@@ -1,16 +1,7 @@
 # regis_db
 
-A new Flutter project.
+![image](https://github.com/HariIDn/RegDB_044/assets/108159696/6c134048-d9f6-4c81-8da2-c3960b4398a2)
 
-## Getting Started
+![image](https://github.com/HariIDn/RegDB_044/assets/108159696/8142ba8f-858b-426e-9ded-ea5b6722ab83)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
